@@ -20,16 +20,16 @@ export default function Register() {
     setEmail(emailRef.current.value);
   };
 
-  const handleLogin = () => {
-    history.push("/login")
-  }
+  // const handleLogin = () => {
+  //   history.push("/login")
+  // }
   
   const handleFinish = async (e) => {
     e.preventDefault();
     setPassword(passwordRef.current.value);
     setUsername(usernameRef.current.value);
     try {
-      await axios.post("https://watchnowapp.herokuapp.com/api/auth/register", { email,username, password });
+      await axios.post("auth/register", { email,username, password });
       history.push("/login");
     } catch (err) {}
   };
@@ -43,7 +43,7 @@ export default function Register() {
             src={logoImage}
             alt="logo"
           />
-          <button className="loginButton" onClick={handleLogin}>Sign In</button>
+          <button className="loginButton">Sign In</button>
         </div>
       </div>
       <div className="container">
