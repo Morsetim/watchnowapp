@@ -40,5 +40,5 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "https://watchnowapp.herokuapp.com/"
+  "proxy": "https://watchnowapp.herokuapp.com/api/"
 }
