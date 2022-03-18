@@ -13,6 +13,7 @@ export default function Login() {
     e.preventDefault();
     login({ email, password }, dispatch);
   };
+
   return (
     <div className="login">
       <div className="top">
