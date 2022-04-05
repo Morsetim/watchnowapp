@@ -1,5 +1,6 @@
 import { useContext, useState } from "react";
 import { login } from "../../authContext/apiCalls";
+import { Link } from "react-router-dom";
 import { AuthContext } from "../../authContext/AuthContext";
 import logoImage from "../../images/istockphoto-1322037170-170667a-removebg-preview.png";
 import "./login.scss";
@@ -42,7 +43,7 @@ export default function Login() {
             Sign In
           </button>
           <span>
-            New to Watchnow? <b>Sign up now.</b>
+            New to Watchnow? <Link to={'/register'}><b>Sign up now.</b></Link> 
           </span>
         </form>
       </div>

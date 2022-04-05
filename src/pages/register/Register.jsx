@@ -1,6 +1,6 @@
 import { useRef } from "react";
 import { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import axios from "axios";
 import "./register.scss";
 import logoImage from "../../images/istockphoto-1322037170-170667a-removebg-preview.png";
@@ -48,7 +48,7 @@ export default function Register() {
             src={logoImage}
             alt="logo"
           />
-          <button className="loginButton">Sign In</button>
+          {/* <button className="loginButton">Sign In</button> */}
         </div>
       </div>
       <div className="container">
@@ -58,11 +58,14 @@ export default function Register() {
           Ready to watch? Enter your email to create or restart your membership.
         </p>
         {!email ? (
+          <div className="gen">
           <div className="input">
             <input type="email" placeholder="email address" ref={emailRef} />
             <button className="registerButton" onClick={handleStart}>
               Get Started
             </button>
+          </div>
+          <p>Have an account?  <Link to="/login"><span className="sgn-clk">Sign In</span></Link></p>
           </div>
         ) : (
           <form className="input">
