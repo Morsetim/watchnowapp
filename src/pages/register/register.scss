@@ -92,10 +92,47 @@
       }
       p{
         margin-top: 8px;
-
+        text-decoration: none;
+        
         .sgn-clk{
           text-decoration: none;
           color: red;
+        }
+      }
+    }
+    .genn{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 50%;
+
+      .input {
+        width: 100%;
+        background-color: white;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        // margin-top: 20px;
+        height: 50px;
+        border-radius: 5px;
+  
+        input{
+            width: 50%;
+            flex: 9;
+            height: 100%;
+            border: none;
+            padding: 0 10px;
+            outline: none;
+        }
+  
+        .registerButton{
+            flex: 3;
+            height: 100%;
+            background-color: red;
+            border: none;
+            color: white;
+            font-size: 22px;
+            cursor: pointer;
         }
       }
     }
