@@ -65,12 +65,12 @@ export default function Register() {
               Get Started
             </button>
           </div>
-          <p>Have an account?  <Link to="/login" style={{ color: 'inherit', textDecoration: 'inherit'}}><span className="sgn-clk">Sign In</span></Link></p>
+          <p>Have an account?  <Link to="/login"><span className="sgn-clk">Sign In</span></Link></p>
           </div>
         ) : (
           <div className="genn">
             <form className="input">
-              <input type="email" placeholder="email" ref={usernameRef} />
+              <input type="email" placeholder="username" ref={usernameRef} />
               <input type="password" placeholder="password" ref={passwordRef} />
               <button className="registerButton" onClick={handleFinish}>
               {loading ? (<FillingBottle color="#ffffff" width="10px" height="10px" duration=".51s" />) : "Start"}
