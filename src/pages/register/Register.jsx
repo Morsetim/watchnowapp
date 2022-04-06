@@ -65,7 +65,7 @@ export default function Register() {
               Get Started
             </button>
           </div>
-          <p>Have an account?  <Link to="/login"><span className="sgn-clk">Sign In</span></Link></p>
+          <p>Have an account?  <Link to="/login" style={{textDecoration:"none"}}><span className="sgn-clk">Sign In</span></Link></p>
           </div>
         ) : (
           <div className="genn">
