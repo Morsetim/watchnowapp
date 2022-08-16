@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import { login } from "../../authContext/apiCalls";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../authContext/AuthContext";
+import { useDispatch, useSelector } from 'react-redux';
 import logoImage from "../../images/istockphoto-1322037170-170667a-removebg-preview.png";
 import "./login.scss";
 
