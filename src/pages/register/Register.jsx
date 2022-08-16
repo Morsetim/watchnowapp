@@ -1,8 +1,6 @@
-import { useRef } from "react";
 import { useState } from "react";
 import { useHistory, Link } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
-import axios from "axios";
 import "./register.scss";
 import logoImage from "../../images/istockphoto-1322037170-170667a-removebg-preview.png";
 import FillingBottle from "react-cssfx-loading/lib/Messaging";
@@ -21,8 +19,6 @@ export default function Register() {
 
   const { user } = useSelector(state => state.signUpState)
 
-  console.log(user, "arrived here......")
-
   const history = useHistory();
 
   const handleStart = (e) => {
@@ -34,24 +30,16 @@ export default function Register() {
     const { name, value } = e.target;
     setData(prev => ({ ...prev, [name]: value }));
   }
-const clearData = () => {
-  setData({
-    email: "",
-    password: "",
-    username: ""
-  })
-}
 
   useEffect(() => {
     if(user.isAdmin === false){
       setTimeout(() => history.push('/login'), 1000) 
     }
+    return () => {
+      setData({}); // This worked for me
+    };
   }, [user])
   const dispatch = useDispatch();
-
-  // const handleLogin = () => {
-  //   history.push("/login")
-  // }
   
   const handleFinish = async (e) => {
     e.preventDefault();
@@ -73,7 +61,6 @@ const clearData = () => {
             src={logoImage}
             alt="logo"
           />
-          {/* <button className="loginButton">Sign In</button> */}
         </div>
       </div>
       <div className="container">
