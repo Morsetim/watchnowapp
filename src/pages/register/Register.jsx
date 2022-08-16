@@ -1,26 +1,53 @@
 import { useRef } from "react";
 import { useState } from "react";
 import { useHistory, Link } from "react-router-dom";
+import { useDispatch, useSelector } from 'react-redux';
 import axios from "axios";
 import "./register.scss";
 import logoImage from "../../images/istockphoto-1322037170-170667a-removebg-preview.png";
 import FillingBottle from "react-cssfx-loading/lib/Messaging";
+import { signup } from "../../redux/actions/auth";
+import { useEffect } from "react";
 
 
 export default function Register() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [username, setUsername] = useState("");
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
+  const [nextInput, setNextInput] = useState(true);
+  const [data, setData] = useState({
+    email: "",
+    password: "",
+    username: ""
+  });
+
+  const { user } = useSelector(state => state.signUpState)
+
+  console.log(user, "arrived here......")
+
   const history = useHistory();
 
-  const emailRef = useRef();
-  const passwordRef = useRef();
-  const usernameRef = useRef();
-
-  const handleStart = () => {
-    setEmail(emailRef.current.value);
+  const handleStart = (e) => {
+    e.preventDefault();
+    setNextInput(false)
   };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setData(prev => ({ ...prev, [name]: value }));
+  }
+const clearData = () => {
+  setData({
+    email: "",
+    password: "",
+    username: ""
+  })
+}
+
+  useEffect(() => {
+    if(user.isAdmin === false){
+      setTimeout(() => history.push('/login'), 1000) 
+    }
+  }, [user])
+  const dispatch = useDispatch();
 
   // const handleLogin = () => {
   //   history.push("/login")
@@ -28,13 +55,11 @@ export default function Register() {
   
   const handleFinish = async (e) => {
     e.preventDefault();
-    setPassword(passwordRef.current.value);
-    setUsername(usernameRef.current.value);
+    setLoading(true)
     try {
-      const res = await axios.post("https://watchnowapp.herokuapp.com/api/auth/register", { email,username, password });
+      const res = await dispatch(signup(data));
       if(res.status === 201){
-        setLoading(true)
-        setTimeout(() => history.push('/login'), 1000 ) 
+        setTimeout(() => history.push('/login'), 1000) 
       }
     } catch (err) {}
   };
@@ -57,10 +82,10 @@ export default function Register() {
         <p>
           Ready to watch? Enter your email to create or restart your membership.
         </p>
-        {!email ? (
+        {nextInput ? (
           <div className="gen">
           <div className="input">
-            <input type="email" placeholder="email address" ref={emailRef} />
+            <input name='email' onChange={handleChange} placeholder="youremail@gmail.com" className="username_or_email" />
             <button className="registerButton" onClick={handleStart}>
               Get Started
             </button>
@@ -70,8 +95,8 @@ export default function Register() {
         ) : (
           <div className="genn">
             <form className="input">
-              <input type="email" placeholder="username" ref={usernameRef} />
-              <input type="password" placeholder="password" ref={passwordRef} />
+              <input name='username' onChange={handleChange} placeholder="Firstname" className="user_name" />
+              <input name='password' onChange={handleChange} type='password' placeholder="Password" className="password" />
               <button className="registerButton" onClick={handleFinish}>
               {loading ? (<FillingBottle color="#ffffff" width="10px" height="10px" duration=".51s" />) : "Start"}
               </button>
