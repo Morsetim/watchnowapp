@@ -12,7 +12,7 @@ export const signup = (data) => dispatch => {
     type: USER_SIGNUP_REQUEST
   })
 
-  axios.post(`${process.env.REACT_APP_BASE_URL}/auth/register`, data).then(user => {
+  axios.post(`https://watchnowapp.herokuapp.com/api/auth/register`, data).then(user => {
     dispatch({
       type: USER_SIGNUP_SUCCESS,
       payload: user.data
