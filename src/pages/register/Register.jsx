@@ -32,7 +32,7 @@ export default function Register() {
   }
 
   useEffect(() => {
-    if(user.isAdmin === false){
+    if(user?.isAdmin === false){
       setTimeout(() => history.push('/login'), 1000) 
     }
     return () => {
