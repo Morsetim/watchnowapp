@@ -21,8 +21,6 @@ export default function Register() {
 
   const { user } = useSelector(state => state.signUpState)
 
-  console.log(user, "arrived here......")
-
   const history = useHistory();
 
   const handleStart = (e) => {
@@ -46,6 +44,9 @@ const clearData = () => {
     if(user.isAdmin === false){
       setTimeout(() => history.push('/login'), 1000) 
     }
+    return () => {
+      setData({}); // This worked for me
+    };
   }, [user])
   const dispatch = useDispatch();
 
