@@ -38,7 +38,8 @@ export default function Register() {
     return () => {
       setData({}); // This worked for me
     };
-  }, [user.isAdmin])
+    // eslint-disable-next-line 
+  }, [user])
   const dispatch = useDispatch();
   
   const handleFinish = async (e) => {
