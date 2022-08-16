@@ -38,7 +38,7 @@ export default function Register() {
     return () => {
       setData({}); // This worked for me
     };
-  }, [user])
+  }, [user.isAdmin])
   const dispatch = useDispatch();
   
   const handleFinish = async (e) => {
