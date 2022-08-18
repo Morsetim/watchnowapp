@@ -30,13 +30,13 @@ export default function Register() {
     const { name, value } = e.target;
     setData(prev => ({ ...prev, [name]: value }));
   }
-
   useEffect(() => {
     if(user?.isAdmin === false){
+      setLoading(false);
       setTimeout(() => history.push('/login'), 1000) 
     }
     return () => {
-      setData({}); // This worked for me
+      setData({}); 
     };
     // eslint-disable-next-line 
   }, [user])
@@ -46,11 +46,8 @@ export default function Register() {
     e.preventDefault();
     setLoading(true)
     try {
-      const res = await dispatch(signup(data));
-      if(res.status === 201){
-        setTimeout(() => history.push('/login'), 1000) 
-      }
-    } catch (err) {}
+      await dispatch(signup(data));
+    } catch (err) { }
   };
 
   return (
@@ -83,7 +80,7 @@ export default function Register() {
         ) : (
           <div className="genn">
             <form className="input">
-              <input name='username' onChange={handleChange} placeholder="Firstname" className="user_name" />
+              <input name='username' onChange={handleChange} placeholder="Username" className="user_name" />
               <input name='password' onChange={handleChange} type='password' placeholder="Password" className="password" />
               <button className="registerButton" onClick={handleFinish}>
               {loading ? (<FillingBottle color="#ffffff" width="10px" height="10px" duration=".51s" />) : "Start"}
