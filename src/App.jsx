@@ -9,7 +9,6 @@ import {
   Route,
   Redirect,
 } from "react-router-dom";
-import { useContext } from "react";
 import {useSelector} from 'react-redux'
 
 const App = () => {
