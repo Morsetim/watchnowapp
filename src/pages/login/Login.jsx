@@ -1,18 +1,19 @@
-import { useContext, useState } from "react";
+import {  useState } from "react";
 import { login } from "../../authContext/apiCalls";
 import { Link } from "react-router-dom";
-import { AuthContext } from "../../authContext/AuthContext";
 import logoImage from "../../images/istockphoto-1322037170-170667a-removebg-preview.png";
 import "./login.scss";
+import {useDispatch} from 'react-redux'
 
 export default function Login() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const { dispatch } = useContext(AuthContext);
+  const [email, setEmail] = useState("badman@test.com");
+  const [password, setPassword] = useState("123456");
 
+
+const dispatch = useDispatch()
   const handleLogin = (e) => {
     e.preventDefault();
-    login({ email, password }, dispatch);
+    dispatch(login({ email, password }))
   };
 
   return (
@@ -32,11 +33,13 @@ export default function Login() {
           <input
             type="email"
             placeholder="Email"
+            value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
           <input
             type="password"
             placeholder="Password"
+            value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
           <button className="loginButton" onClick={handleLogin}>
