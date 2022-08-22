@@ -18,7 +18,6 @@ export const signup = (data) => dispatch => {
       payload: user.data
     })
 
-    console.log(user.data, "user.datauser.datauser.datauser.data")
   }).catch(e => {
     dispatch({
       type: USER_SIGNUP_FAILURE,

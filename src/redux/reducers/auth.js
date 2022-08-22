@@ -29,18 +29,27 @@ const initialState = {
   };
 
 
-  export const signinReducer = (state = initialState, action) => {
+  export const signinReducer = (state = {}, action) => {
+
     switch (action.type) {
-      case USER_SIGNIN_REQUEST:
-        return { ...state};
-  
-      case USER_SIGNIN_SUCCESS:
+      case "LOGIN_SUCCESS":
         return {
-          ...state,
           user: action.payload,
+          isFetching: false,
+          error: false,
         };
-      case USER_SIGNIN_FAILURE:
-        return { ...state, user: action.payload, loading: false};
+      case "LOGIN_FAILURE":
+        return {
+          user: null,
+          isFetching: false,
+          error: true,
+        };
+        case "LOGOUT":
+          return {
+            user: null,
+            isFetching: false,
+            error: false,
+          };
       default:
         return state;
     }

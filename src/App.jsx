@@ -10,10 +10,11 @@ import {
   Redirect,
 } from "react-router-dom";
 import { useContext } from "react";
-import { AuthContext } from "./authContext/AuthContext";
+import {useSelector} from 'react-redux'
 
 const App = () => {
-  const { user } = useContext(AuthContext);
+  const {user} = useSelector(state => state.signinState)
+
   return (
     <Router>
       <Switch>
@@ -21,7 +22,7 @@ const App = () => {
           {user ? <Home /> : <Redirect to="/register" />}
         </Route>
         <Route path="/register">{!user ? <Register /> : <Redirect to="/" />}</Route>
-         <Route path="/login">{!user ? <Login /> : <Redirect to="/" />}</Route> 
+         <Route path="/login">{user ? <Redirect to="/" /> : <Login /> } </Route> 
         {user && (
           <>
             <Route path="/movies">
