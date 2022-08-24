@@ -1,6 +1,6 @@
 import { ArrowDropDown, Notifications, Search } from "@material-ui/icons";
 import { useState } from "react";
-import {useDispatch} from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux'
 import {useHistory} from 'react-router-dom'
 
 import "./navbar.scss";
@@ -11,6 +11,10 @@ import logoImage from "../../images/istockphoto-1322037170-170667a-removebg-prev
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const dispatch = useDispatch();
+  const {signinState: {user}} = useSelector(state => state);
+
+  console.log(user, "user---store----");
+
   const history = useHistory()
 
   window.onscroll = () => {
@@ -42,6 +46,7 @@ const Navbar = () => {
           <span>My List</span>
         </div>
         <div className="right">
+          <p>Welcome! {user.username.charAt(0).toUpperCase() + user.username.slice(1)}</p>
           <Search className="icon" />
           <span>KID</span>
           <Notifications className="icon" />
