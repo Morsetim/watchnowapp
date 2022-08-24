@@ -13,8 +13,6 @@ const Navbar = () => {
   const dispatch = useDispatch();
   const {signinState: {user}} = useSelector(state => state);
 
-  console.log(user, "user---store----");
-
   const history = useHistory()
 
   window.onscroll = () => {
