@@ -16,6 +16,7 @@ export default function Register() {
     password: "",
     username: ""
   });
+  
 
   const { user } = useSelector(state => state.signUpState)
 
