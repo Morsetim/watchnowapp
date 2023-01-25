@@ -19,10 +19,12 @@ const Navbar = () => {
     setIsScrolled(window.pageYOffset === 0 ? false : true);
     return () => (window.onscroll = null);
   };
+
   const handleLogout =() => {
      dispatch(logout())
      history.push('/login')
   }
+  
   return (
     <div className={isScrolled ? "navbar scrolled" : "navbar"}>
       <div className="container">
