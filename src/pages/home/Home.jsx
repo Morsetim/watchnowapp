@@ -13,7 +13,7 @@ const Home = ({ type }) => {
     const getRandomLists = async () => {
       try {
         const res = await axios.get(
-          `https://watchnowapp.herokuapp.com/api/lists${type ? "?type=" + type : ""}${
+          `https://watchnow-bcknd-morsetim.onrender.com/api/lists${type ? "?type=" + type : ""}${
             genre ? "&genre=" + genre : ""
           }`,
           {
