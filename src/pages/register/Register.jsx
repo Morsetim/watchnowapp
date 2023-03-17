@@ -11,14 +11,18 @@ import { useEffect } from "react";
 export default function Register() {
   const [loading, setLoading] = useState(false);
   const [nextInput, setNextInput] = useState(true);
+  const [existEmail, setExistEmail ] = useState(null)
   const [data, setData] = useState({
     email: "",
     password: "",
     username: ""
   });
+  const dispatch = useDispatch();
   
 
-  const { user } = useSelector(state => state.signUpState)
+  const { user, error } = useSelector(state => state.signUpState)
+
+  console.log(error, "register page")
 
   const history = useHistory();
 
@@ -41,14 +45,24 @@ export default function Register() {
     };
     // eslint-disable-next-line 
   }, [user])
-  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if(error === "Request failed with status code 401"){
+      setExistEmail("Email Already Exist")
+      setLoading(false);
+    }
+  },[error])
+
+  console.log(existEmail, "======Exist")
   
   const handleFinish = async (e) => {
     e.preventDefault();
     setLoading(true)
     try {
       await dispatch(signup(data));
-    } catch (err) { }
+    } catch (err) { 
+      console.log(err)
+    }
   };
 
   return (
@@ -68,6 +82,8 @@ export default function Register() {
         <p>
           Ready to watch? Enter your email to create or restart your membership.
         </p>
+        <p className="exist-email">{existEmail}</p>
+        <p></p>
         {nextInput ? (
           <div className="gen">
           <div className="input">

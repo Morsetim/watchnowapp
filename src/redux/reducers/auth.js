@@ -5,7 +5,8 @@ import {
 } from "../actionCreators"
 
 const initialState = {
-    user: {}
+    user: {},
+    error: null
   };
   
   export const signupReducer = (state = initialState, action) => {
@@ -19,7 +20,8 @@ const initialState = {
           user: action.payload,
         };
       case USER_SIGNUP_FAILURE:
-        return { ...state, user: action.payload, loading: false};
+        console.log(action.error, "reducer")
+        return { ...state, error: action.error, loading: false};
       default:
         return state;
     }

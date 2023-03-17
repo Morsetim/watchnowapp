@@ -17,11 +17,11 @@ export const signup = (data) => dispatch => {
       type: USER_SIGNUP_SUCCESS,
       payload: user.data
     })
-
   }).catch(e => {
+    console.log(e,"<<<<<<")
     dispatch({
       type: USER_SIGNUP_FAILURE,
-      error: e.message
+      error: e?.message
     })
   })
 }
