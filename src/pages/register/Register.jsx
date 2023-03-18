@@ -20,9 +20,7 @@ export default function Register() {
   const dispatch = useDispatch();
   
 
-  const { user, error } = useSelector(state => state.signUpState)
-
-  console.log(error, "register page")
+  const { user, errorMessage } = useSelector(state => state.signUpState)
 
   const history = useHistory();
 
@@ -47,13 +45,11 @@ export default function Register() {
   }, [user])
 
   useEffect(() => {
-    if(error === "Request failed with status code 401"){
-      setExistEmail("Email Already Exist")
+    if(errorMessage){
+      setExistEmail(errorMessage)
       setLoading(false);
     }
-  },[error])
-
-  console.log(existEmail, "======Exist")
+  },[errorMessage])
   
   const handleFinish = async (e) => {
     e.preventDefault();

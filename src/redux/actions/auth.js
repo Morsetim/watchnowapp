@@ -18,10 +18,9 @@ export const signup = (data) => dispatch => {
       payload: user.data
     })
   }).catch(e => {
-    console.log(e,"<<<<<<")
     dispatch({
       type: USER_SIGNUP_FAILURE,
-      error: e?.message
+      error: e?.response.data.message
     })
   })
 }

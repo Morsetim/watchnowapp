@@ -6,7 +6,7 @@ import {
 
 const initialState = {
     user: {},
-    error: null
+    errorMessage: null
   };
   
   export const signupReducer = (state = initialState, action) => {
@@ -21,7 +21,7 @@ const initialState = {
         };
       case USER_SIGNUP_FAILURE:
         console.log(action.error, "reducer")
-        return { ...state, error: action.error, loading: false};
+        return { ...state, errorMessage: action.error, loading: false};
       default:
         return state;
     }

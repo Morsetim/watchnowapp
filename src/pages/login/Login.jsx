@@ -4,10 +4,11 @@ import { Link } from "react-router-dom";
 import logoImage from "../../images/istockphoto-1322037170-170667a-removebg-preview.png";
 import FillingBottle from "react-cssfx-loading/lib/Messaging";
 import "./login.scss";
-import {useDispatch} from 'react-redux'
+import { useDispatch, useSelector} from 'react-redux'
 
 export default function Login() {
-  const [email, setEmail] = useState("");
+  const {signUpState: {user}} = useSelector(state => state);
+  const [email, setEmail] = useState(user.email);
   const [loading, setLoading] = useState(false)
   const [password, setPassword] = useState("");
 
