@@ -8,6 +8,7 @@ export const login =  (user) => async (dispatch)  => {
     localStorage.setItem("user" , JSON.stringify((res.data)))
     dispatch(loginSuccess(res.data));
   } catch (err) {
-    dispatch(loginFailure());
+    const errRes = err.response.data
+    dispatch(loginFailure(errRes));
   }
 };

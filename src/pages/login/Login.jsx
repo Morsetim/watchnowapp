@@ -1,24 +1,38 @@
 import {  useState } from "react";
 import { login } from "../../authContext/apiCalls";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import logoImage from "../../images/istockphoto-1322037170-170667a-removebg-preview.png";
 import FillingBottle from "react-cssfx-loading/lib/Messaging";
 import "./login.scss";
 import { useDispatch, useSelector} from 'react-redux'
+import { Logout } from "../../redux/actions/auth";
+import { useEffect } from "react";
 
 export default function Login() {
   const {signUpState: {user}} = useSelector(state => state);
-  const [email, setEmail] = useState(user.email);
+  const savedEmail = user?.data?.email;
+  const [email, setEmail] = useState(user?.data?.email || savedEmail);
   const [loading, setLoading] = useState(false)
   const [password, setPassword] = useState("");
+  const dispatch = useDispatch();
+  const history = useHistory();
 
+console.log(user, "login")
 
-const dispatch = useDispatch()
   const handleLogin = (e) => {
     e.preventDefault();
     setLoading(true);
     dispatch(login({ email, password }))
   };
+
+  const redirect =() => {
+    dispatch(Logout())
+    history.push('/register')
+ }
+
+//  useEffect(() => {
+//   redirect()
+//  }, [user])
 
   return (
     <div className="login">
@@ -53,7 +67,7 @@ const dispatch = useDispatch()
           <FillingBottle color="#ffffff" width="10px" height="10px" duration=".51s" />
         </button>
            }
-          <span>
+          <span onClick={redirect}>
             New to Watchnow? <Link to={'/register'}><b>Sign up now.</b></Link> 
           </span>
         </form>

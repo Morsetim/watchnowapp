@@ -13,6 +13,8 @@ import {useSelector} from 'react-redux'
 
 const App = () => {
   const {user} = useSelector(state => state.signinState);
+  const a = useSelector(state => state.signinState);
+
 
   return (
     <Router>

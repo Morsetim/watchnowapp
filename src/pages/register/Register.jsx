@@ -5,10 +5,12 @@ import "./register.scss";
 import logoImage from "../../images/istockphoto-1322037170-170667a-removebg-preview.png";
 import FillingBottle from "react-cssfx-loading/lib/Messaging";
 import { signup } from "../../redux/actions/auth";
+import { logout } from "../../authContext/AuthActions";
 import { useEffect } from "react";
 
 
 export default function Register() {
+  const { user, errorMessage, tempStatus } = useSelector(state => state.signUpState)
   const [loading, setLoading] = useState(false);
   const [nextInput, setNextInput] = useState(true);
   const [existEmail, setExistEmail ] = useState(null)
@@ -19,8 +21,7 @@ export default function Register() {
   });
   const dispatch = useDispatch();
   
-
-  const { user, errorMessage } = useSelector(state => state.signUpState)
+//  console.log(currentStatus, "regis")
 
   const history = useHistory();
 
@@ -33,16 +34,16 @@ export default function Register() {
     const { name, value } = e.target;
     setData(prev => ({ ...prev, [name]: value }));
   }
+//  console.log(user.status, "register page")
+
   useEffect(() => {
-    if(user?.isAdmin === false){
+    if(user?.status === 201 && tempStatus === 201){
       setLoading(false);
-      setTimeout(() => history.push('/login'), 1000) 
+      setTimeout(() => history.push('/login'), 1000)
+      
     }
-    return () => {
-      setData({}); 
-    };
     // eslint-disable-next-line 
-  }, [user])
+  }, [user, tempStatus])
 
   useEffect(() => {
     if(errorMessage){
