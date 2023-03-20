@@ -21,7 +21,6 @@ export default function Register() {
   });
   const dispatch = useDispatch();
   
-//  console.log(currentStatus, "regis")
 
   const history = useHistory();
 
@@ -34,7 +33,6 @@ export default function Register() {
     const { name, value } = e.target;
     setData(prev => ({ ...prev, [name]: value }));
   }
-//  console.log(user.status, "register page")
 
   useEffect(() => {
     if(user?.status === 201 && tempStatus === 201){

@@ -16,7 +16,6 @@ const initialState = {
       case USER_SIGNUP_REQUEST:
         return { ...state, loading: true };
         case USER_SIGNUP_SUCCESS:
-        console.log(action, "register reducer")
         return {
           ...state,
           user: action.payload,
@@ -41,7 +40,6 @@ const initialState = {
 
     switch (action.type) {
       case "LOGIN_SUCCESS":
-        console.log(action.payload, "new action")
         return {
           user: action.payload,
           isFetching: false,

@@ -17,7 +17,6 @@ export default function Login() {
   const dispatch = useDispatch();
   const history = useHistory();
 
-console.log(user, "login")
 
   const handleLogin = (e) => {
     e.preventDefault();
