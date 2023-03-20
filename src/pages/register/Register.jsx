@@ -5,7 +5,6 @@ import "./register.scss";
 import logoImage from "../../images/istockphoto-1322037170-170667a-removebg-preview.png";
 import FillingBottle from "react-cssfx-loading/lib/Messaging";
 import { signup } from "../../redux/actions/auth";
-import { logout } from "../../authContext/AuthActions";
 import { useEffect } from "react";
 
 
@@ -20,8 +19,6 @@ export default function Register() {
     username: ""
   });
   const dispatch = useDispatch();
-  
-
   const history = useHistory();
 
   const handleStart = (e) => {
@@ -38,7 +35,6 @@ export default function Register() {
     if(user?.status === 201 && tempStatus === 201){
       setLoading(false);
       setTimeout(() => history.push('/login'), 1000)
-      
     }
     // eslint-disable-next-line 
   }, [user, tempStatus])
