@@ -36,6 +36,11 @@
     color: white;
     opacity: 0.6;
 
+    .error-signin{
+      color: red;
+      font-weight: 700;
+      text-align: center;
+    }
     form {
       width: 300px;
       height: 300px;

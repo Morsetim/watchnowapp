@@ -14,6 +14,7 @@ export const login = (user) => async (dispatch)  => {
       payload: res
     })
   } catch (err) {
+    console.log(err.response, "erreeeerrr")
     dispatch({
       type: USER_SIGNIN_FAILURE,
       error: err.response.data

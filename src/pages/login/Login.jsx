@@ -10,10 +10,11 @@ import { useEffect } from "react";
 
 export default function Login() {
   const {signUpState: {user}} = useSelector(state => state);
-  const {signinState: {status}} = useSelector(state => state);
+  const {signinState: {status, errorMessage}} = useSelector(state => state);
   const [email, setEmail] = useState(user?.data?.email || "");
   const [loading, setLoading] = useState(false);
   const [password, setPassword] = useState("");
+  const [loginError, setLoginError] = useState(null)
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -28,7 +29,11 @@ export default function Login() {
     if(status === 200) {
       history.push('/')
     }
-  }, [status, history])
+    if(errorMessage){
+      setLoginError(errorMessage)
+      setLoading(false);
+    }
+  }, [status, history, errorMessage])
 
   const redirect = () => {
     dispatch(Logout())
@@ -49,6 +54,7 @@ export default function Login() {
       <div className="container">
         <form>
           <h1>Sign In</h1>
+          <p className="error-signin">{loginError}</p>
           <input
             type="email"
             placeholder="Email"
