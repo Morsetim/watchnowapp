@@ -28,7 +28,7 @@ export default function Login() {
     if(status === 200) {
       history.push('/')
     }
-  }, [status])
+  }, [status, history])
 
   const redirect = () => {
     dispatch(Logout())

@@ -13,10 +13,9 @@ import {useSelector} from 'react-redux'
 
 const App = () => {
   const {user} = useSelector(state => state.signinState);
-  const { userLogin, status }= useSelector(state => state.signinState);
+  const { userLogin }= useSelector(state => state.signinState);
   const isAuthenticated =  localStorage.getItem("watch_now_token");
 
-  // console.log(a, "App js")
 
   return (
     <Router>

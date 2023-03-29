@@ -4,11 +4,9 @@ import {
     USER_SIGNUP_FAILURE,
     USER_SIGNIN_REQUEST,
     USER_SIGNIN_SUCCESS,
-    USER_SIGNIN_FAILURE,
+    // USER_SIGNIN_FAILURE,
     USER_LOGOUT
 } from "../actionCreators";
-
-import { loginStart, loginSuccess, loginFailure, logout} from "../../authContext/AuthActions";
 
 
 const initialState = {
