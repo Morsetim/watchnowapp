@@ -2,13 +2,22 @@ import {
     USER_SIGNUP_REQUEST,
     USER_SIGNUP_SUCCESS,
     USER_SIGNUP_FAILURE,
+    USER_SIGNIN_REQUEST,
+    USER_SIGNIN_SUCCESS,
+    USER_SIGNIN_FAILURE,
     USER_LOGOUT
-} from "../actionCreators"
+} from "../actionCreators";
+
+import { loginStart, loginSuccess, loginFailure, logout} from "../../authContext/AuthActions";
+
 
 const initialState = {
     user: {},
     errorMessage: null,
-    tempStatus: null
+    tempStatus: null,
+    loading: null,
+    userLogin: null,
+    status: null
   };
   
   export const signupReducer = (state = initialState, action) => {
@@ -23,7 +32,6 @@ const initialState = {
         };
       case USER_SIGNUP_FAILURE:
         return { ...state, errorMessage: action.error, loading: false};
-
         case USER_LOGOUT:
           return {
              ...state,
@@ -37,24 +45,27 @@ const initialState = {
 
 
   export const signinReducer = (state = {}, action) => {
-
     switch (action.type) {
-      case "LOGIN_SUCCESS":
+      case USER_SIGNIN_REQUEST:
+        return { ...state, loading: true }
+      case USER_SIGNIN_SUCCESS:
+        console.log(action.payload, "reduzer login")
         return {
-          user: action.payload,
-          isFetching: false,
+          userLogin: action.payload.data,
+          loading: false,
           error: false,
+          status: action.payload.status
         };
-      case "LOGIN_FAILURE":
-        return {
-          user: null,
-          isFetching: false,
-          error: true,
-        };
-        case "LOGOUT":
+      // case "LOGIN_FAILURE":
+      //   return {
+      //     user: null,
+      //     isFetching: false,
+      //     error: true,
+      //   };
+        case USER_LOGOUT:
           return {
-            user: null,
-            isFetching: false,
+            userLogin: null,
+            status: null,
             error: false,
           };
       default:

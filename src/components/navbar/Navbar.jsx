@@ -5,15 +5,14 @@ import {useHistory} from 'react-router-dom'
 
 import "./navbar.scss";
 import { Link } from "react-router-dom";
-import { logout } from "../../authContext/AuthActions";
+import { Logout } from "../../redux/actions/auth";
 import logoImage from "../../images/istockphoto-1322037170-170667a-removebg-preview.png";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const dispatch = useDispatch();
-  const {signinState: {user}} = useSelector(state => state);
-
-  const history = useHistory()
+  const {signinState: {userLogin}} = useSelector(state => state);
+  const history = useHistory();
 
   window.onscroll = () => {
     setIsScrolled(window.pageYOffset === 0 ? false : true);
@@ -21,7 +20,7 @@ const Navbar = () => {
   };
 
   const handleLogout =() => {
-     dispatch(logout())
+     dispatch(Logout())
      history.push('/login')
   }
   
@@ -46,7 +45,7 @@ const Navbar = () => {
           <span>My List</span>
         </div>
         <div className="right">
-          <p>Welcome! {user.username.charAt(0).toUpperCase() + user.username.slice(1)}</p>
+          <p>Welcome! {userLogin?.username?.charAt(0).toUpperCase() + userLogin?.username?.slice(1)}</p>
           <Search className="icon" />
           <span>KID</span>
           <Notifications className="icon" />

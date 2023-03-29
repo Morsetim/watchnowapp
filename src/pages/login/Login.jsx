@@ -6,12 +6,13 @@ import FillingBottle from "react-cssfx-loading/lib/Messaging";
 import "./login.scss";
 import { useDispatch, useSelector} from 'react-redux'
 import { Logout } from "../../redux/actions/auth";
+import { useEffect } from "react";
 
 export default function Login() {
   const {signUpState: {user}} = useSelector(state => state);
-  const savedEmail = user?.data?.email;
-  const [email, setEmail] = useState(user?.data?.email || savedEmail);
-  const [loading, setLoading] = useState(false)
+  const {signinState: {status}} = useSelector(state => state);
+  const [email, setEmail] = useState(user?.data?.email || "");
+  const [loading, setLoading] = useState(false);
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
   const history = useHistory();
@@ -22,12 +23,17 @@ export default function Login() {
     setLoading(true);
     dispatch(login({ email, password }))
   };
+ 
+  useEffect(() => {
+    if(status === 200) {
+      history.push('/')
+    }
+  }, [status])
 
-  const redirect =() => {
+  const redirect = () => {
     dispatch(Logout())
     history.push('/register')
  }
-
 
   return (
     <div className="login">
