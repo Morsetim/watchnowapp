@@ -79,7 +79,7 @@ export default function Register() {
           <div className="gen">
           <div className="input">
             <input name='email' onChange={handleChange} placeholder="youremail@gmail.com" className="username_or_email" />
-            <button className="registerButton" onClick={handleStart}>
+            <button className={data.email === ''? "registerButtonDisabled" : "registerButton"} onClick={handleStart} disabled={data.email === ''}>
               Get Started
             </button>
           </div>
@@ -90,7 +90,7 @@ export default function Register() {
             <form className="input">
               <input name='username' onChange={handleChange} placeholder="Username" className="user_name" />
               <input name='password' onChange={handleChange} type='password' placeholder="Password" className="password" />
-              <button className="registerButton" onClick={handleFinish}>
+              <button className={data.username === ''|| data.password === ''? "registerButtonDisabled":"registerButton"} onClick={handleFinish} >
               {loading ? (<FillingBottle color="#ffffff" width="10px" height="10px" duration=".51s" />) : "Start"}
               </button>
             </form>

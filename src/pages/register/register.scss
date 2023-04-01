@@ -92,8 +92,16 @@
             color: white;
             font-size: 22px;
             cursor: pointer;
-      
         }
+       .registerButtonDisabled{
+            flex: 3;
+            height: 100%;
+            background-color: rgb(233, 94, 94);
+            border: none;
+            color: white;
+            font-size: 22px;
+            cursor: pointer;
+       }
       }
       p{
         margin-top: 8px;
@@ -142,6 +150,15 @@
             justify-content: center;
             align-items: center;
         }
+        .registerButtonDisabled{
+          flex: 3;
+          height: 100%;
+          background-color: rgb(233, 94, 94);
+          border: none;
+          color: white;
+          font-size: 22px;
+          cursor: pointer;
+     }
       }
     }
 
