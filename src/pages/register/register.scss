@@ -115,9 +115,19 @@
     }
     .genn{
       display: flex;
-      align-items: center;
-      justify-content: center;
+      // align-items: center;
+      // justify-content: flex-start;
+      flex-direction: column;
       width: 50%;
+
+      p{
+        margin-top: 3px;
+      }
+      
+      .sgn-clk{
+        text-decoration: none;
+        color: red;
+      }
 
       .input {
         width: 100%;

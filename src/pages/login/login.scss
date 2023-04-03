@@ -63,7 +63,7 @@
         }
       }
 
-      button {
+      .loginButton {
         height: 40px;
         border-radius: 5px;
         background-color: red;
@@ -75,6 +75,19 @@
         display: flex;
         justify-content: center;
         align-items: center;
+      }
+      .loginButton-disabled{
+        height: 40px;
+        border-radius: 5px;
+        color: white;
+        border: none;
+        font-size: 18px;
+        font-weight: 500;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: rgb(233, 94, 94);
       }
 
       span {
