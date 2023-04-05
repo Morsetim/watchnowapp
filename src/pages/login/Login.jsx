@@ -67,7 +67,7 @@ export default function Login() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          {!loading ? <button className={email === "" || password === "" ? "loginButton-disabled" : "loginButton"} 
+          {!loading ? <button className={email === "" || password.length < 4 ? "loginButton-disabled" : "loginButton"} 
              onClick={handleLogin} disabled={email === ''|| password === ''}>
             Sign In
           </button> :

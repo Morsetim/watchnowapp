@@ -90,8 +90,8 @@ export default function Register() {
             <form className="input">
               <input name='username' onChange={handleChange} placeholder="Username" className="user_name" />
               <input name='password' onChange={handleChange} type='password' placeholder="Password" className="password" />
-              <button className={data.username === ''|| data.password === ''? "registerButtonDisabled":"registerButton"}
-               disabled={data.username === ''|| data.password === ''}
+              <button className={data.username === '' || data.password.length < 4 ? "registerButtonDisabled":"registerButton"}
+               disabled={data.username === '' || data.password.length < 4}
                onClick={handleFinish} >
               {loading ? (<FillingBottle color="#ffffff" width="10px" height="10px" duration=".51s" />) : "Start"}
               </button>
