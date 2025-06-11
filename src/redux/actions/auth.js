@@ -25,6 +25,7 @@ export const signup = (data) => dispatch => {
     })
   })
 }
+
 export const Logout = () => (dispatch) => {
   localStorage.clear()
   dispatch({
